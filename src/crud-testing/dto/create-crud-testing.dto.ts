@@ -61,6 +61,7 @@ export class CreateCrudTestingDto {
   @ValidateNested({ each: true })
   @Type(() => CreateRoleDto)
   readonly roles?: CreateRoleDto[];
+    description!: string;
 
   constructor(
     name: string,

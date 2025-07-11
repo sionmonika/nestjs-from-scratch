@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CrudTestingModule } from './crud-testing/crud-testing.module';
+// import { CrudTestingModule } from './crud-testing/crud-testing.module';
 import { CacheModule, CACHE_MANAGER, CacheInterceptor } from '@nestjs/cache-manager';
 
 import { User } from './crud-testing/entities/user.entity';
@@ -15,10 +15,13 @@ import { CustomCacheInterceptor } from './interceptors/custom-cache.interceptor'
 import { createKeyv } from '@keyv/redis';
 import { Keyv } from 'keyv';
 import { CacheableMemory } from 'cacheable';
- 
+import { CqrsModule } from '@nestjs/cqrs';
+ import { CrudTestingModule} from './heroes/crud-testing.module';
+
 
 @Module({
   imports: [
+     CqrsModule.forRoot(),
      CacheModule.registerAsync({
       useFactory: async () => {
         return {
@@ -51,12 +54,14 @@ import { CacheableMemory } from 'cacheable';
     }),
 
     CrudTestingModule,
+
+    CrudTesting,
   ],
   providers: [
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: CacheInterceptor,
-    },
+    // {
+    //   // provide: APP_INTERCEPTOR,
+    //   // useClass: CacheInterceptor,
+    // },
   ],
 })
 export class AppModule {}
