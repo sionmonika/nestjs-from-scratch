@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package hero;
+
+message HeroById {
+  int32 id = 1;
+}
+
+message Hero {
+  int32 id = 1;
+  string name = 2;
+}
+
+service HeroesService {
+  rpc FindOne (HeroById) returns (Hero);
+}
