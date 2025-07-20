@@ -1,0 +1,3 @@
+[submodule "typesense-crud"]
+	path = typesense-crud
+	url = git@github.com:sionmonika/nestjs-from-scratch.git
